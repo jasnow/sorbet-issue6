@@ -2028,7 +2028,7 @@ class ActiveSupport::EventedFileUpdateChecker::PathHelper
 end
 class File < IO
   def self.atomic_write(file_name, temp_dir = nil); end
-  def self.probe_stat_in(dir); end
+  def self.empty?(arg0); end
 end
 module ActiveSupport::MarshalWithAutoloading
   def load(source, proc = nil); end
