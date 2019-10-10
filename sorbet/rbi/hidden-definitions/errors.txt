@@ -2230,10 +2230,10 @@
 # wrong constant name current
 # wrong constant name yield
 # wrong constant name size?
+# wrong constant name atomic_write
 # wrong constant name exists?
 # wrong constant name lutime
 # wrong constant name mkfifo
-# wrong constant name probe_stat_in
 # uninitialized constant FileUtils::DryRun::LN_SUPPORTED
 # uninitialized constant FileUtils::DryRun::RUBY
 # uninitialized constant FileUtils::DryRun::VERSION
@@ -7157,33 +7157,30 @@
 # uninitialized constant SortedSet::InspectKey
 # wrong constant name initialize
 # wrong constant name setup
-# wrong constant name <Class:CoffeeScriptTemplate>
-# wrong constant name <Class:ERBTemplate>
-# wrong constant name <Class:EcoTemplate>
-# wrong constant name <Class:EjsTemplate>
-# wrong constant name <Class:SassTemplate>
-# wrong constant name <Class:ScssTemplate>
+# uninitialized constant Sprockets::Base::ALLOWED_REQUEST_METHODS
+# uninitialized constant Sprockets::Base::BASE64_DIGITS
+# uninitialized constant Sprockets::Base::BASE64_VALUES
 # uninitialized constant Sprockets::Base::DIGEST_SIZES
 # uninitialized constant Sprockets::Base::HASH_ALGORITHMS
 # uninitialized constant Sprockets::Base::POSSIBLE_BOWER_JSONS
 # uninitialized constant Sprockets::Base::SEPARATOR_PATTERN
-# uninitialized constant Sprockets::Base::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::Base::VALID_METADATA_COMPOUND_TYPES
 # uninitialized constant Sprockets::Base::VALID_METADATA_COMPOUND_TYPES_HASH
 # uninitialized constant Sprockets::Base::VALID_METADATA_TYPES
 # uninitialized constant Sprockets::Base::VALID_METADATA_VALUE_TYPES
 # uninitialized constant Sprockets::Base::VALID_METADATA_VALUE_TYPES_HASH
+# uninitialized constant Sprockets::Base::VLQ_BASE
+# uninitialized constant Sprockets::Base::VLQ_BASE_MASK
+# uninitialized constant Sprockets::Base::VLQ_BASE_SHIFT
+# uninitialized constant Sprockets::Base::VLQ_CONTINUATION_BIT
 # wrong constant name <Class:NullStore>
+# wrong constant name clear
 # wrong constant name get
 # wrong constant name set
 # wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name cache_key
-# wrong constant name call
 # uninitialized constant Sprockets::Configuration::DIGEST_SIZES
 # uninitialized constant Sprockets::Configuration::HASH_ALGORITHMS
 # uninitialized constant Sprockets::Configuration::SEPARATOR_PATTERN
-# uninitialized constant Sprockets::Configuration::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::Configuration::VALID_METADATA_COMPOUND_TYPES
 # uninitialized constant Sprockets::Configuration::VALID_METADATA_COMPOUND_TYPES_HASH
 # uninitialized constant Sprockets::Configuration::VALID_METADATA_TYPES
@@ -7192,30 +7189,18 @@
 # uninitialized constant Sprockets::Dependencies::DIGEST_SIZES
 # uninitialized constant Sprockets::Dependencies::HASH_ALGORITHMS
 # uninitialized constant Sprockets::Dependencies::SEPARATOR_PATTERN
-# wrong constant name call
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name cache_key
-# wrong constant name call
-# wrong constant name <static-init>
-# wrong constant name cache_key
-# wrong constant name call
 # uninitialized constant Sprockets::Loader::DIGEST_SIZES
 # uninitialized constant Sprockets::Loader::HASH_ALGORITHMS
 # uninitialized constant Sprockets::Loader::SEPARATOR_PATTERN
-# uninitialized constant Sprockets::Loader::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::Loader::VALID_METADATA_COMPOUND_TYPES
 # uninitialized constant Sprockets::Loader::VALID_METADATA_COMPOUND_TYPES_HASH
 # uninitialized constant Sprockets::Loader::VALID_METADATA_TYPES
 # uninitialized constant Sprockets::Loader::VALID_METADATA_VALUE_TYPES
 # uninitialized constant Sprockets::Loader::VALID_METADATA_VALUE_TYPES_HASH
-# uninitialized constant Sprockets::Mime::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::PathDigestUtils::DIGEST_SIZES
 # uninitialized constant Sprockets::PathDigestUtils::HASH_ALGORITHMS
 # uninitialized constant Sprockets::PathDigestUtils::SEPARATOR_PATTERN
 # uninitialized constant Sprockets::Paths::SEPARATOR_PATTERN
-# uninitialized constant Sprockets::Paths::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
-# uninitialized constant Sprockets::Processing::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::Processing::VALID_METADATA_COMPOUND_TYPES
 # uninitialized constant Sprockets::Processing::VALID_METADATA_COMPOUND_TYPES_HASH
 # uninitialized constant Sprockets::Processing::VALID_METADATA_TYPES
@@ -7229,19 +7214,12 @@
 # uninitialized constant Sprockets::Rails::Helper::URI_REGEXP
 # uninitialized constant Sprockets::Railtie::ABSTRACT_RAILTIES
 # uninitialized constant Sprockets::Resolve::SEPARATOR_PATTERN
-# wrong constant name <static-init>
-# wrong constant name call
-# wrong constant name <static-init>
-# wrong constant name call
-# uninitialized constant Sprockets::Transformers::UNBOUND_METHODS_BIND_TO_ANY_OBJECT
 # uninitialized constant Sprockets::Transformers::VALID_METADATA_COMPOUND_TYPES
 # uninitialized constant Sprockets::Transformers::VALID_METADATA_COMPOUND_TYPES_HASH
 # uninitialized constant Sprockets::Transformers::VALID_METADATA_TYPES
 # uninitialized constant Sprockets::Transformers::VALID_METADATA_VALUE_TYPES
 # uninitialized constant Sprockets::Transformers::VALID_METADATA_VALUE_TYPES_HASH
 # wrong constant name result
-# wrong constant name +@
-# wrong constant name -@
 # wrong constant name []=
 # wrong constant name casecmp?
 # wrong constant name each_grapheme_cluster

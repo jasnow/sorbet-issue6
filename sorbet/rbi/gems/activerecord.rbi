@@ -2781,6 +2781,7 @@ class ActiveRecord::Relation
   include ActiveRecord::FinderMethods
   include Enumerable
   include SorbetRails::CustomFinderMethods
+  include SorbetRails::PluckToTStruct
 end
 class ActiveRecord::Relation::HashMerger
   def hash; end
@@ -3327,6 +3328,7 @@ class ActiveRecord::Base
   extend ActiveSupport::DescendantsTracker
   extend ActiveSupport::DescendantsTracker
   extend SorbetRails::CustomFinderMethods
+  extend SorbetRails::PluckToTStruct
   include ActiveModel::AttributeMethods
   include ActiveModel::AttributeMethods
   include ActiveModel::Conversion

@@ -7,4 +7,4 @@ module ::Anonymous_Delegator_11; end
 module ::Anonymous_Delegator_12; end
 module ::Anonymous_Delegator_13; end
 module ::Anonymous_Delegator_14; end
-module ::Anonymous_Delegator_24; end
+module ::Anonymous_Delegator_25; end
