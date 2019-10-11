@@ -14397,8 +14397,6 @@ class String
 
   def each_grapheme_cluster(); end
 
-  def encode(*_); end
-
   def encode!(*_); end
 
   def grapheme_clusters(); end
