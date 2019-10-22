@@ -835,6 +835,12 @@ module ActionView
   ENCODING_FLAG = ::T.let(nil, ::T.untyped)
 end
 
+class ActionView::ActionViewError
+end
+
+class ActionView::ActionViewError
+end
+
 class ActionView::Base
   include ::ActionView::Context
   include ::ActionView::CompiledTemplates
@@ -976,6 +982,12 @@ class ActionView::DependencyTracker::ERBTracker
   VARIABLE_OR_METHOD_CHAIN = ::T.let(nil, ::T.untyped)
 end
 
+class ActionView::EncodingError
+end
+
+class ActionView::EncodingError
+end
+
 module ActionView::Helpers::AssetUrlHelper
   ASSET_EXTENSIONS = ::T.let(nil, ::T.untyped)
   ASSET_PUBLIC_DIRECTORIES = ::T.let(nil, ::T.untyped)
@@ -1023,6 +1035,11 @@ end
 
 class ActionView::MissingTemplate
   def initialize(paths, path, prefixes, partial, details, *_); end
+
+  def path(); end
+end
+
+class ActionView::MissingTemplate
 end
 
 class ActionView::OutputBuffer
@@ -1160,6 +1177,9 @@ class ActionView::Template::Error
   SOURCE_CODE_RADIUS = ::T.let(nil, ::T.untyped)
 end
 
+class ActionView::Template::Error
+end
+
 class ActionView::Template::HTML
   def formats(); end
 
@@ -1209,6 +1229,8 @@ end
 class ActionView::Template::Types::Type
   SET = ::T.let(nil, ::T.untyped)
 end
+
+ActionView::TemplateError = ActionView::Template::Error
 
 class ActionView::TemplateRenderer
   def render(context, options); end
@@ -1408,6 +1430,9 @@ end
 
 class ActionView::WrongEncodingError
   def initialize(string, encoding); end
+end
+
+class ActionView::WrongEncodingError
 end
 
 module ActiveJob::Arguments
@@ -2565,6 +2590,10 @@ class ActiveRecord::Schema
   def define(info, &block); end
 end
 
+class ActiveRecord::Schema
+  def self.define(info=T.unsafe(nil), &block); end
+end
+
 class ActiveRecord::Scoping::ScopeRegistry
   VALID_SCOPE_TYPES = ::T.let(nil, ::T.untyped)
 end
@@ -2813,6 +2842,8 @@ ActiveRecord::Type::BigInteger = ActiveModel::Type::BigInteger
 
 ActiveRecord::Type::Binary = ActiveModel::Type::Binary
 
+ActiveRecord::Type::Boolean = ActiveModel::Type::Boolean
+
 ActiveRecord::Type::Decimal = ActiveModel::Type::Decimal
 
 ActiveRecord::Type::Float = ActiveModel::Type::Float
@@ -2822,6 +2853,10 @@ ActiveRecord::Type::Helpers = ActiveModel::Type::Helpers
 ActiveRecord::Type::Integer = ActiveModel::Type::Integer
 
 ActiveRecord::Type::String = ActiveModel::Type::String
+
+ActiveRecord::Type::Value = ActiveModel::Type::Value
+
+ActiveRecord::UnknownAttributeError = ActiveModel::UnknownAttributeError
 
 module ActiveRecord::VERSION
   MAJOR = ::T.let(nil, ::T.untyped)
