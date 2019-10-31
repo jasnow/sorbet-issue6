@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activestorage/all/activestorage.rbi
 #
-# activestorage-5.2.3
+# activestorage-6.0.0
 module ActiveStorage
   def analyzers; end
   def analyzers=(obj); end
@@ -23,8 +23,12 @@ module ActiveStorage
   def paths=(obj); end
   def previewers; end
   def previewers=(obj); end
-  def queue; end
-  def queue=(obj); end
+  def queues; end
+  def queues=(obj); end
+  def replace_on_assign_to_many; end
+  def replace_on_assign_to_many=(obj); end
+  def routes_prefix; end
+  def routes_prefix=(obj); end
   def self.analyzers; end
   def self.analyzers=(obj); end
   def self.binary_content_type; end
@@ -40,48 +44,65 @@ module ActiveStorage
   def self.paths=(obj); end
   def self.previewers; end
   def self.previewers=(obj); end
-  def self.queue; end
-  def self.queue=(obj); end
+  def self.queues; end
+  def self.queues=(obj); end
   def self.railtie_helpers_paths; end
   def self.railtie_namespace; end
   def self.railtie_routes_url_helpers(include_path_helpers = nil); end
+  def self.replace_on_assign_to_many; end
+  def self.replace_on_assign_to_many=(obj); end
+  def self.routes_prefix; end
+  def self.routes_prefix=(obj); end
+  def self.service_urls_expire_in; end
+  def self.service_urls_expire_in=(obj); end
   def self.table_name_prefix; end
   def self.use_relative_model_naming?; end
   def self.variable_content_types; end
   def self.variable_content_types=(obj); end
+  def self.variant_processor; end
+  def self.variant_processor=(obj); end
   def self.verifier; end
   def self.verifier=(obj); end
   def self.version; end
+  def service_urls_expire_in; end
+  def service_urls_expire_in=(obj); end
   def variable_content_types; end
   def variable_content_types=(obj); end
+  def variant_processor; end
+  def variant_processor=(obj); end
   def verifier; end
   def verifier=(obj); end
   extend ActiveSupport::Autoload
 end
 module ActiveStorage::VERSION
 end
-class ActiveStorage::InvariableError < StandardError
+class ActiveStorage::Error < StandardError
 end
-class ActiveStorage::UnpreviewableError < StandardError
+class ActiveStorage::InvariableError < ActiveStorage::Error
 end
-class ActiveStorage::UnrepresentableError < StandardError
+class ActiveStorage::UnpreviewableError < ActiveStorage::Error
 end
-module ActiveStorage::Downloading
-  def download_blob_to(file); end
-  def download_blob_to_tempfile; end
-  def open_tempfile_for_blob; end
-  def tempdir; end
+class ActiveStorage::UnrepresentableError < ActiveStorage::Error
+end
+class ActiveStorage::IntegrityError < ActiveStorage::Error
+end
+class ActiveStorage::FileNotFoundError < ActiveStorage::Error
+end
+module ActiveStorage::Transformers
+  extend ActiveSupport::Autoload
 end
 class ActiveStorage::Previewer
   def blob; end
   def capture(*argv, to:); end
+  def download_blob_to_tempfile(&block); end
   def draw(*argv); end
   def initialize(blob); end
+  def instrument(operation, payload = nil, &block); end
   def logger; end
-  def open_tempfile_for_drawing; end
+  def open_tempfile; end
   def preview; end
   def self.accept?(blob); end
-  include ActiveStorage::Downloading
+  def tmpdir; end
 end
 class ActiveStorage::Previewer::PopplerPDFPreviewer < ActiveStorage::Previewer
   def draw_first_page_from(file, &block); end
@@ -105,11 +126,12 @@ class ActiveStorage::Previewer::VideoPreviewer < ActiveStorage::Previewer
 end
 class ActiveStorage::Analyzer
   def blob; end
+  def download_blob_to_tempfile(&block); end
   def initialize(blob); end
   def logger; end
   def metadata; end
   def self.accept?(blob); end
-  include ActiveStorage::Downloading
+  def tmpdir; end
 end
 class ActiveStorage::Analyzer::ImageAnalyzer < ActiveStorage::Analyzer
   def metadata; end
@@ -137,37 +159,63 @@ class ActiveStorage::Analyzer::VideoAnalyzer < ActiveStorage::Analyzer
   def video_stream; end
   def width; end
 end
+module ActiveStorage::Reflection
+end
+class ActiveStorage::Reflection::HasOneAttachedReflection < ActiveRecord::Reflection::MacroReflection
+  def macro; end
+end
+class ActiveStorage::Reflection::HasManyAttachedReflection < ActiveRecord::Reflection::MacroReflection
+  def macro; end
+end
+module ActiveStorage::Reflection::ReflectionExtension
+  def add_attachment_reflection(model, name, reflection); end
+  def reflection_class_for(macro); end
+end
+module ActiveStorage::Reflection::ActiveRecordExtensions
+  extend ActiveSupport::Concern
+end
+module ActiveStorage::Reflection::ActiveRecordExtensions::ClassMethods
+  def reflect_on_all_attachments; end
+  def reflect_on_attachment(attachment); end
+end
 class ActiveStorage::Engine < Rails::Engine
+end
+module ActiveStorage::Attached::Model
+  def attachment_changes; end
+  def reload(*arg0); end
+  extend ActiveSupport::Concern
+end
+module ActiveStorage::Attached::Model::ClassMethods
+  def has_many_attached(name, dependent: nil); end
+  def has_one_attached(name, dependent: nil); end
 end
 class ActiveStorage::Attached::One < ActiveStorage::Attached
   def attach(attachable); end
   def attached?; end
   def attachment; end
-  def build_attachment(blob:); end
+  def blank?; end
   def detach; end
   def method_missing(method, *args, &block); end
   def purge; end
   def purge_later; end
   def respond_to_missing?(name, include_private = nil); end
-  def transaction(*args, &block); end
   def write_attachment(attachment); end
 end
 class ActiveStorage::Attached::Many < ActiveStorage::Attached
   def attach(*attachables); end
   def attached?; end
   def attachments; end
+  def blobs; end
   def detach; end
   def method_missing(method, *args, &block); end
   def respond_to_missing?(name, include_private = nil); end
 end
-module ActiveStorage::Attached::Macros
-  def has_many_attached(name, dependent: nil); end
-  def has_one_attached(name, dependent: nil); end
+module ActiveStorage::Attached::Changes
+  extend ActiveSupport::Autoload
 end
 class ActiveStorage::Attached
-  def create_blob_from(attachable); end
-  def dependent; end
-  def initialize(name, record, dependent:); end
+  def change; end
+  def initialize(name, record); end
   def name; end
   def record; end
 end

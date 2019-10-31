@@ -7,12 +7,13 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/railties/all/railties.rbi
 #
-# railties-5.2.3
+# railties-6.0.0
 module Rails
   def self.app_class; end
   def self.app_class=(arg0); end
   def self.application; end
   def self.application=(arg0); end
+  def self.autoloaders; end
   def self.backtrace_cleaner; end
   def self.cache; end
   def self.cache=(arg0); end
@@ -91,7 +92,7 @@ end
 class Rails::Engine < Rails::Railtie
   def _all_autoload_once_paths; end
   def _all_autoload_paths; end
-  def _all_load_paths; end
+  def _all_load_paths(add_autoload_paths_to_load_path); end
   def app; end
   def build_middleware; end
   def build_request(env); end
@@ -117,7 +118,7 @@ class Rails::Engine < Rails::Railtie
   def paths(*args, &block); end
   def railties; end
   def root(*args, &block); end
-  def routes; end
+  def routes(&block); end
   def routes?; end
   def run_tasks_blocks(*arg0); end
   def self.called_from; end
@@ -169,7 +170,7 @@ class Rails::Application < Rails::Engine
   def build_middleware_stack; end
   def build_request(env); end
   def config; end
-  def config=(configuration); end
+  def config=(arg0); end
   def config_for(name, env: nil); end
   def console(&blk); end
   def credentials; end
@@ -210,7 +211,7 @@ class Rails::Application < Rails::Engine
   def sandbox?; end
   def secret_key_base; end
   def secrets; end
-  def secrets=(secrets); end
+  def secrets=(arg0); end
   def self.add_lib_to_load_path!(root); end
   def self.create(initial_variable_values = nil, &block); end
   def self.find_root(from); end
@@ -221,7 +222,21 @@ class Rails::Application < Rails::Engine
   def validate_secret_key_base(secret_key_base); end
   def watchable_args; end
 end
+class Rails::Application::NonSymbolAccessDeprecatedHash < ActiveSupport::HashWithIndifferentAccess
+  def []=(key, value); end
+  def convert_key(key); end
+  def convert_value(value, options = nil); end
+  def initialize(value = nil); end
+end
 module Rails::VERSION
+end
+module Rails::Autoloaders
+  def self.each; end
+  def self.log!; end
+  def self.logger=(logger); end
+  def self.main; end
+  def self.once; end
+  def self.zeitwerk_enabled?; end
 end
 module Rails::Paths
 end
@@ -258,6 +273,7 @@ class Rails::Paths::Path
   def existent_directories; end
   def expanded; end
   def extensions; end
+  def files_in(path); end
   def first; end
   def glob; end
   def glob=(arg0); end
@@ -338,6 +354,8 @@ class Rails::Engine::Configuration < Rails::Railtie::Configuration
   def eager_load_paths=(arg0); end
   def generators; end
   def initialize(root = nil); end
+  def javascript_path; end
+  def javascript_path=(arg0); end
   def middleware; end
   def middleware=(arg0); end
   def paths; end
@@ -374,33 +392,42 @@ module Rails::LineFiltering
 end
 class Rails::TestUnitRailtie < Rails::Railtie
 end
-class SourceAnnotationExtractor
+class Rails::SourceAnnotationExtractor
   def display(results, options = nil); end
   def extract_annotations_from(file, pattern); end
   def find(dirs); end
   def find_in(dir); end
   def initialize(tag); end
-  def self.enumerate(tag, options = nil); end
+  def self.enumerate(tag = nil, options = nil); end
   def tag; end
 end
-class SourceAnnotationExtractor::Annotation < Struct
+class Anonymous_Struct_1 < Struct
   def line; end
   def line=(_); end
   def self.[](*arg0); end
-  def self.directories; end
-  def self.extensions; end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
-  def self.register_directories(*dirs); end
-  def self.register_extensions(*exts, &block); end
   def tag; end
   def tag=(_); end
   def text; end
   def text=(_); end
+end
+class Rails::SourceAnnotationExtractor::Annotation < Anonymous_Struct_1
+  def self.directories; end
+  def self.extensions; end
+  def self.notes_task_deprecation_warning; end
+  def self.register_directories(*dirs); end
+  def self.register_extensions(*exts, &block); end
+  def self.register_tags(*additional_tags); end
+  def self.tags; end
   def to_s(options = nil); end
 end
+module SourceAnnotationExtractor
+end
 class Rails::Application::Configuration < Rails::Engine::Configuration
+  def add_autoload_paths_to_load_path; end
+  def add_autoload_paths_to_load_path=(arg0); end
   def allow_concurrency; end
   def allow_concurrency=(arg0); end
   def annotations; end
@@ -410,6 +437,8 @@ class Rails::Application::Configuration < Rails::Engine::Configuration
   def asset_host=(arg0); end
   def autoflush_log; end
   def autoflush_log=(arg0); end
+  def autoloader; end
+  def autoloader=(autoloader); end
   def beginning_of_week; end
   def beginning_of_week=(arg0); end
   def cache_classes; end
@@ -423,13 +452,23 @@ class Rails::Application::Configuration < Rails::Engine::Configuration
   def console; end
   def console=(arg0); end
   def content_security_policy(&block); end
+  def content_security_policy_nonce_directives; end
+  def content_security_policy_nonce_directives=(arg0); end
   def content_security_policy_nonce_generator; end
   def content_security_policy_nonce_generator=(arg0); end
   def content_security_policy_report_only; end
   def content_security_policy_report_only=(arg0); end
+  def credentials; end
+  def credentials=(arg0); end
+  def credentials_available_for_current_env?; end
   def database_configuration; end
   def debug_exception_response_format; end
-  def debug_exception_response_format=(value); end
+  def debug_exception_response_format=(arg0); end
+  def default_credentials_content_path; end
+  def default_credentials_key_path; end
+  def default_log_file; end
+  def disable_sandbox; end
+  def disable_sandbox=(arg0); end
   def eager_load; end
   def eager_load=(arg0); end
   def enable_dependency_loading; end
@@ -448,7 +487,10 @@ class Rails::Application::Configuration < Rails::Engine::Configuration
   def force_ssl=(arg0); end
   def helpers_paths; end
   def helpers_paths=(arg0); end
+  def hosts; end
+  def hosts=(arg0); end
   def initialize(*arg0); end
+  def load_database_yaml; end
   def load_defaults(target_version); end
   def loaded_config_version; end
   def log_formatter; end
@@ -474,8 +516,6 @@ class Rails::Application::Configuration < Rails::Engine::Configuration
   def require_master_key=(arg0); end
   def secret_key_base; end
   def secret_key_base=(arg0); end
-  def secret_token; end
-  def secret_token=(arg0); end
   def session_options; end
   def session_options=(arg0); end
   def session_store(new_session_store = nil, **options); end
@@ -494,6 +534,7 @@ class Rails::Application::Configuration::Custom
 end
 module Rails::Command
   def self.command_type; end
+  def self.commands; end
   def self.environment; end
   def self.file_lookup_paths; end
   def self.find_by_namespace(namespace, command_name = nil); end
@@ -502,7 +543,6 @@ module Rails::Command
   def self.lookup_paths; end
   def self.print_commands; end
   def self.root; end
-  def self.sorted_groups; end
   extend ActiveSupport::Autoload
   extend Rails::Command::Behavior::ClassMethods
   include Rails::Command::Behavior
@@ -511,7 +551,6 @@ module Rails::Command::Behavior
   extend ActiveSupport::Concern
 end
 module Rails::Command::Behavior::ClassMethods
-  def levenshtein_distance(str1, str2); end
   def lookup!; end
   def lookup(namespaces); end
   def namespaces_to_paths(namespaces); end
@@ -585,9 +624,7 @@ class Rails::Rack::Logger < ActiveSupport::LogSubscriber
 end
 module Rails::Generators::Actions
   def add_source(source, options = nil, &block); end
-  def after_bundle(&block); end
   def application(data = nil, options = nil); end
-  def capify!; end
   def environment(data = nil, options = nil); end
   def execute_command(executor, command, options = nil); end
   def extify(name); end
@@ -595,6 +632,8 @@ module Rails::Generators::Actions
   def gem_group(*names, &block); end
   def generate(what, *args); end
   def git(commands = nil); end
+  def github(repo, options = nil, &block); end
+  def indentation; end
   def initialize(*arg0); end
   def initializer(filename, data = nil); end
   def lib(filename, data = nil); end
@@ -607,6 +646,7 @@ module Rails::Generators::Actions
   def readme(path); end
   def route(routing_code); end
   def vendor(filename, data = nil); end
+  def with_indentation(&block); end
 end
 class Rails::Generators::Error < Thor::Error
 end
@@ -637,6 +677,8 @@ class Rails::Generators::Base < Thor::Group
   include Thor::Actions
 end
 class Rails::Generators::GeneratedAttribute
+  def attachment?; end
+  def attachments?; end
   def attr_options; end
   def column_name; end
   def default; end
@@ -658,6 +700,7 @@ class Rails::Generators::GeneratedAttribute
   def polymorphic?; end
   def reference?; end
   def required?; end
+  def rich_text?; end
   def self.parse(column_definition); end
   def self.parse_type_and_options(type); end
   def self.reference?(type); end
@@ -665,6 +708,7 @@ class Rails::Generators::GeneratedAttribute
   def token?; end
   def type; end
   def type=(arg0); end
+  def virtual?; end
 end
 class Rails::Generators::NamedBase < Rails::Generators::Base
   def self.check_class_collision(options = nil); end
@@ -677,6 +721,9 @@ class Rails::Application::DefaultMiddlewareStack
   def load_rack_cache; end
   def paths; end
   def show_exceptions_app; end
+end
+class Rails::BacktraceCleaner < ActiveSupport::BacktraceCleaner
+  def initialize; end
 end
 module Rails::Generators::Testing
 end
@@ -750,10 +797,8 @@ end
 class ActiveRecord::Scoping::ScopeRegistry
   def self.value_for(*args, &block); end
 end
-class ActiveRecord::SchemaMigration < ActiveRecord::Base
+class ActiveRecord::InternalMetadata < ActiveRecord::Base
   def self.default_scope_override; end
-end
-module ActiveSupport
 end
 class ActiveSupport::TestCase < Minitest::Test
   def config; end
@@ -767,6 +812,9 @@ class ActiveSupport::TestCase < Minitest::Test
   def fixture_table_names; end
   def fixture_table_names=(val); end
   def fixture_table_names?; end
+  def lock_threads; end
+  def lock_threads=(val); end
+  def lock_threads?; end
   def pre_loaded_fixtures; end
   def pre_loaded_fixtures=(val); end
   def pre_loaded_fixtures?; end
@@ -782,6 +830,9 @@ class ActiveSupport::TestCase < Minitest::Test
   def self.fixture_table_names; end
   def self.fixture_table_names=(val); end
   def self.fixture_table_names?; end
+  def self.lock_threads; end
+  def self.lock_threads=(val); end
+  def self.lock_threads?; end
   def self.pre_loaded_fixtures; end
   def self.pre_loaded_fixtures=(val); end
   def self.pre_loaded_fixtures?; end
@@ -798,6 +849,7 @@ class ActiveSupport::TestCase < Minitest::Test
   def use_transactional_tests=(val); end
   def use_transactional_tests?; end
   extend ActiveRecord::TestFixtures::ClassMethods
+  include ActiveRecord::TestDatabases
   include ActiveRecord::TestFixtures
 end
 class ActionDispatch::IntegrationTest < ActiveSupport::TestCase

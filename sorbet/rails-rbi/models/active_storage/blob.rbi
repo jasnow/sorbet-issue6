@@ -7,28 +7,6 @@ module ActiveStorage::Blob::ActiveRelation_WhereNot
   def not(opts, *rest); end
 end
 
-module ActiveStorage::Blob::GeneratedAssociationMethods
-  extend T::Sig
-
-  sig { returns(::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy) }
-  def attachments; end
-
-  sig { params(value: T::Enumerable[::ActiveStorage::Attachment]).void }
-  def attachments=(value); end
-
-  sig { returns(T.nilable(::ActiveStorage::Attachment)) }
-  def preview_image_attachment; end
-
-  sig { params(value: T.nilable(::ActiveStorage::Attachment)).void }
-  def preview_image_attachment=(value); end
-
-  sig { returns(T.nilable(::ActiveStorage::Blob)) }
-  def preview_image_blob; end
-
-  sig { params(value: T.nilable(::ActiveStorage::Blob)).void }
-  def preview_image_blob=(value); end
-end
-
 module ActiveStorage::Blob::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[ActiveStorage::Blob]) }
   def first_n(limit); end
@@ -68,6 +46,9 @@ class ActiveStorage::Blob < ActiveRecord::Base
   def self.select(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def self.reselect(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.order(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
@@ -99,6 +80,9 @@ class ActiveStorage::Blob < ActiveRecord::Base
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.preload(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def self.extract_associated(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.eager_load(*args); end
@@ -137,10 +121,16 @@ class ActiveStorage::Blob < ActiveRecord::Base
   def self.unscope(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def self.optimizer_hints(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.merge(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.except(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def self.only(*args); end
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.void)).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def self.extending(*args, &block); end
@@ -239,6 +229,9 @@ class ActiveStorage::Blob::ActiveRecord_Relation < ActiveRecord::Relation
   def select(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def reselect(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def order(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
@@ -270,6 +263,9 @@ class ActiveStorage::Blob::ActiveRecord_Relation < ActiveRecord::Relation
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def preload(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def extract_associated(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def eager_load(*args); end
@@ -308,10 +304,16 @@ class ActiveStorage::Blob::ActiveRecord_Relation < ActiveRecord::Relation
   def unscope(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def optimizer_hints(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def merge(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def except(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
+  def only(*args); end
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.void)).returns(ActiveStorage::Blob::ActiveRecord_Relation) }
   def extending(*args, &block); end
@@ -418,6 +420,9 @@ class ActiveStorage::Blob::ActiveRecord_AssociationRelation < ActiveRecord::Asso
   def select(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def reselect(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def order(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
@@ -449,6 +454,9 @@ class ActiveStorage::Blob::ActiveRecord_AssociationRelation < ActiveRecord::Asso
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def preload(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def extract_associated(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def eager_load(*args); end
@@ -487,10 +495,16 @@ class ActiveStorage::Blob::ActiveRecord_AssociationRelation < ActiveRecord::Asso
   def unscope(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def optimizer_hints(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def merge(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def except(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def only(*args); end
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.void)).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def extending(*args, &block); end
@@ -596,6 +610,9 @@ class ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ActiveRec
   def select(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def reselect(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def order(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
@@ -627,6 +644,9 @@ class ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ActiveRec
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def preload(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def extract_associated(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def eager_load(*args); end
@@ -665,10 +685,16 @@ class ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ActiveRec
   def unscope(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def optimizer_hints(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def merge(*args); end
 
   sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def except(*args); end
+
+  sig { params(args: T.untyped).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
+  def only(*args); end
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.void)).returns(ActiveStorage::Blob::ActiveRecord_AssociationRelation) }
   def extending(*args, &block); end
@@ -761,4 +787,32 @@ class ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ActiveRec
 
   sig { params(records: T.any(ActiveStorage::Blob, T::Array[ActiveStorage::Blob])).returns(T.self_type) }
   def concat(*records); end
+end
+
+module ActiveStorage::Blob::GeneratedAssociationMethods
+  extend T::Sig
+
+  sig { returns(::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy) }
+  def attachments; end
+
+  sig { params(value: T::Enumerable[::ActiveStorage::Attachment]).void }
+  def attachments=(value); end
+
+  sig { returns(T.nilable(::ActiveStorage::Attachment)) }
+  def preview_image_attachment; end
+
+  sig { params(value: T.nilable(::ActiveStorage::Attachment)).void }
+  def preview_image_attachment=(value); end
+
+  sig { returns(T.nilable(::ActiveStorage::Blob)) }
+  def preview_image_blob; end
+
+  sig { params(value: T.nilable(::ActiveStorage::Blob)).void }
+  def preview_image_blob=(value); end
+
+  sig { returns(T.nilable(ActiveStorage::Attached::One)) }
+  def preview_image; end
+
+  sig { params(attachable: T.untyped).returns(T.untyped) }
+  def preview_image=(attachable); end
 end
