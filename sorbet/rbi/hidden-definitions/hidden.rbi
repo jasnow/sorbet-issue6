@@ -2457,6 +2457,8 @@ class ActiveRecord::Associations::Association
 
   def scope(); end
 
+  def scoping(relation, &block); end
+
   def set_inverse_instance(record); end
 
   def set_inverse_instance_from_queries(record); end
@@ -2664,6 +2666,8 @@ end
 
 class ActiveRecord::Associations::JoinDependency
   def apply_column_aliases(relation); end
+
+  def base_klass(); end
 
   def initialize(base, table, associations, join_type); end
 
@@ -6513,15 +6517,13 @@ class File::Stat
 end
 
 class File
-  def self.atomic_write(file_name, temp_dir=T.unsafe(nil)); end
+  def self.empty?(_); end
 
   def self.exists?(_); end
 
   def self.lutime(*_); end
 
   def self.mkfifo(*_); end
-
-  def self.probe_stat_in(dir); end
 end
 
 module FileUtils
@@ -6791,7 +6793,7 @@ class Hash
 end
 
 class Hash
-  def self.from_trusted_xml(xml); end
+  def self.try_convert(_); end
 end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
