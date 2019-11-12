@@ -3153,10 +3153,10 @@
 # wrong constant name name=
 # wrong constant name passwd
 # wrong constant name passwd=
-# uninitialized constant Etc::Group::Elem
 # wrong constant name []
 # wrong constant name each
 # wrong constant name members
+# wrong constant name <Class:Group>
 # wrong constant name change
 # wrong constant name change=
 # wrong constant name dir
@@ -3177,10 +3177,10 @@
 # wrong constant name uclass=
 # wrong constant name uid
 # wrong constant name uid=
-# uninitialized constant Etc::Passwd::Elem
 # wrong constant name []
 # wrong constant name each
 # wrong constant name members
+# wrong constant name <Class:Passwd>
 # wrong constant name full_message
 # wrong constant name exception
 # wrong constant name to_tty?
@@ -3296,7 +3296,6 @@
 # wrong constant name []
 # wrong constant name members
 # wrong constant name <static-init>
-# uninitialized constant Gem::Specification::Elem
 # wrong constant name correct_for_windows_path
 # wrong constant name <Class:BaseLocator>
 # wrong constant name <Class:BlockLocator>
@@ -7484,7 +7483,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007f9373b50460>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007ffa6a87b3f8>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
@@ -8692,6 +8691,7 @@
 # wrong constant name to_h
 # wrong constant name values
 # wrong constant name values_at
+# wrong constant name <Class:Struct>
 # wrong constant name from_msgpack_ext
 # wrong constant name errno
 # wrong constant name status

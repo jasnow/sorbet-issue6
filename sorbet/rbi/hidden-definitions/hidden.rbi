@@ -6393,6 +6393,7 @@ module FFI::Platform
   INT8_ALIGN = ::T.let(nil, ::T.untyped)
   INT8_SIZE = ::T.let(nil, ::T.untyped)
   IS_BSD = ::T.let(nil, ::T.untyped)
+  IS_DRAGONFLYBSD = ::T.let(nil, ::T.untyped)
   IS_FREEBSD = ::T.let(nil, ::T.untyped)
   IS_GNU = ::T.let(nil, ::T.untyped)
   IS_LINUX = ::T.let(nil, ::T.untyped)
