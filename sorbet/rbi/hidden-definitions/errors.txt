@@ -38,7 +38,6 @@
 # wrong constant name <RESERVED_123>
 # wrong constant name <RESERVED_124>
 # wrong constant name <RESERVED_125>
-# wrong constant name <RESERVED_126>
 # wrong constant name <RESERVED_12>
 # wrong constant name <RESERVED_13>
 # wrong constant name <RESERVED_14>
@@ -7483,7 +7482,7 @@
 # uninitialized constant Rails::Generators::TestCase::VERSION
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007ffa6a87b3f8>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007faa098c6a58>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
